@@ -78,6 +78,13 @@ function speak() {
     utterThis.pitch = pitch.value;
     utterThis.rate = rate.value;
     synth.speak(utterThis);
+
+    const samanthaVoice = voices.find(voice => voice.name === "Samantha");
+    if(samanthaVoice){
+      utterance.voice = samanthaVoice;
+    }
+
+    
   }
 }
 
