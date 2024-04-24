@@ -79,20 +79,20 @@ function speak() {
     utterThis.rate = rate.value;
     synth.speak(utterThis);
 
-    const samanthaVoice = voices.find(voice => voice.name === "Samantha");
-    if(samanthaVoice){
-      utterance.voice = samanthaVoice;
-    }
+    
 
     
   }
 }
 
 inputForm.onsubmit = function (event) {
-  event.preventDefault();
 
-  speak();
 
+
+  const samanthaVoice = voices.find(voice => voice.name === "Samantha");
+    if(samanthaVoice){
+      utterance.voice = samanthaVoice;
+    }
   inputTxt.blur();
 };
 
