@@ -24,6 +24,7 @@ function populateVoiceList() {
       return +1;
     }
   });
+
   const selectedIndex =
     voiceSelect.selectedIndex < 0 ? 0 : voiceSelect.selectedIndex;
   voiceSelect.innerHTML = "";
@@ -78,23 +79,25 @@ function speak() {
     utterThis.pitch = pitch.value;
     utterThis.rate = rate.value;
     synth.speak(utterThis);
-
-    
-
-    
   }
 }
 
 inputForm.onsubmit = function (event) {
-
-
-
+  event.preventDefault(); // Prevent form submission
   const samanthaVoice = voices.find(voice => voice.name === "Samantha");
-    if(samanthaVoice){
-      utterance.voice = samanthaVoice;
-    }
+  if (samanthaVoice) {
+    speakWithVoice(samanthaVoice);
+  }
   inputTxt.blur();
 };
+
+function speakWithVoice(voice) {
+  const utterThis = new SpeechSynthesisUtterance(inputTxt.value);
+  utterThis.voice = voice;
+  utterThis.pitch = pitch.value;
+  utterThis.rate = rate.value;
+  synth.speak(utterThis);
+}
 
 pitch.onchange = function () {
   pitchValue.textContent = pitch.value;
